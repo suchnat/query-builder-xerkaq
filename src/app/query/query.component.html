@@ -1,0 +1,35 @@
+<!-- <ng-container *ngFor="let key of objectKeys(query)">
+
+    <ng-container *ngIf="key == 'rules'">
+      <ng-container *ngFor="let r of query[key]">
+        <mat-chip *ngIf="!r.condition && r.value" color="primary" selected>
+          {{ r.field }} {{ r.operator }} {{ r.value }}
+        </mat-chip>
+        <app-query *ngIf="r.condition" [query]="r"></app-query>
+      </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="key == 'condition'">
+      <mat-chip color="accent" selected class="condition">
+        {{ query.condition }}
+      </mat-chip>
+    </ng-container>
+
+  </ng-container> -->
+
+
+
+
+
+
+<mat-chip color="accent" selected>{{query.condition}}</mat-chip>
+
+<ng-container *ngFor="let r of query.rules">
+	
+  <mat-chip *ngIf="!r.condition && (r.value || r.operator.includes('null'))" color="primary" selected>
+		{{ r.field }} {{ r.operator }} {{ r.value }}
+	</mat-chip>
+
+	<app-query *ngIf="r.condition" [query]="r"></app-query>
+
+</ng-container>
